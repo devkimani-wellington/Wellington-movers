@@ -13,7 +13,7 @@
 ### 📦 About Us
 Wellington Movers Investments & Logistics is a professional moving and logistics company based in Kenya. We specialize in house moving, office relocation, long-distance transport, and secure storage solutions.
 
-**Location:** Nandi Hills, Kenya  
+**Location:** Westlands, Kenya  
 **Coverage:** All 47 Counties  
 **Experience:** 5+ Years
 
