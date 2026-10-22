@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellington Movers Investments & Logistics</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,system-ui;background:#071a33;color:white}
+header{padding:14px 6%;display:flex;justify-content:space-between;align-items:center;background:#071a33;border-bottom:3px solid #d4af62;position:sticky;top:0;z-index:50}
+.logo-img{height:52px;width:auto;background:white;padding:5px 10px;border-radius:8px;object-fit:contain}
+.hamburger{font-size:30px;color:#d4af62;background:none;border:none;cursor:pointer}
+.menu{display:none;position:fixed;top:70px;right:6%;background:#0d2142;border:1px solid #d4af62;border-radius:14px;width:230px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.5)}
+.menu.show{display:block}
+.menu a{display:block;padding:15px 18px;color:white;text-decoration:none;border-bottom:1px solid #112a52;font-weight:700;font-size:14px}
+.menu a:hover{background:#123061;color:#d4af62}
+.hero{min-height:88vh;display:flex;align-items:center;padding:40px 6%;
+background:linear-gradient(100deg,rgba(7,26,51,0.96) 0%,rgba(7,26,51,0.82) 55%,rgba(7,26,51,0.15) 100%),url("https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=1800&q=80");
+background-size:cover;background-position:center}
+.hero-box{max-width:560px}
+.eyebrow{color:#d4af62;letter-spacing:3px;font-size:11px;font-weight:900;margin-bottom:14px}
+.hero h1{font-size:clamp(40px,7vw,70px);line-height:0.95;font-weight:900}
+.hero h1 span{color:#d4af62}
+.hero p{margin:18px 0;color:#cbd5e1;line-height:1.8;font-size:15px;max-width:500px}
+.btn{padding:14px 28px;background:#d4af62;color:#071a33;text-decoration:none;font-weight:900;border-radius:5px;display:inline-block;margin-top:10px}
+</style>
+</head>
+<body>
+
+<header>
+<img src="logo.png" class="logo-img" alt="Wellington Movers">
+<button class="hamburger" onclick="toggle()">☰</button>
+<div class="menu" id="menu">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="service.html">Service</a>
+<a href="payment.html">Payment</a>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-box">
+<div class="eyebrow">MOVERS • INVESTMENTS • LOGISTICS</div>
+<h1>Moving Value.<br><span>Building Tomorrow.</span></h1>
+<p>
+Wellington Movers Investments & Logistics We move;</p>
+<li>Homes</li>
+<li>Businesses </li>
+<li>Hiring trucks, lorrries or trailers </li>
+ <p>We are located across Kenya. We carry out our services with care, speed, and professionalism. We handle packing, transport, and setup — making every move simple and exciting.
+</p>
+<a href="about.html" class="btn">About Us →</a>
+</div>
+</section>
+
+<script>
+function toggle(){document.getElementById('menu').classList.toggle('show')}
+document.addEventListener('click',function(e){
+ let m=document.getElementById('menu'), h=document.querySelector('.hamburger');
+ if(!m.contains(e.target) && !h.contains(e.target)) m.classList.remove('show')
+})
+</script>
+
+</body>
+  </html>
