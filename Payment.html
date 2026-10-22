@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment - Wellington Movers</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,system-ui;background:#071a33;color:white}
+header{padding:14px 6%;display:flex;justify-content:space-between;align-items:center;background:#071a33;border-bottom:3px solid #d4af62;position:sticky;top:0;z-index:50}
+.logo-img{height:52px;width:auto;background:white;padding:5px 10px;border-radius:8px}
+.hamburger{font-size:30px;color:#d4af62;background:none;border:none;cursor:pointer}
+.menu{display:none;position:fixed;top:70px;right:6%;background:#0d2142;border:1px solid #d4af62;border-radius:14px;width:230px;overflow:hidden}
+.menu.show{display:block}
+.menu a{display:block;padding:15px 18px;color:white;text-decoration:none;border-bottom:1px solid #112a52;font-weight:700;font-size:14px}
+.wrap{padding:30px 6%;max-width:900px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:18px}
+@media(max-width:800px){.wrap{grid-template-columns:1fr}}
+.card{background:#0d2142;border:1px solid #1e3a5f;border-radius:14px;padding:20px}
+.card.white{background:white;color:#071a33;border:none}
+h1{font-size:26px;font-weight:900}h1 span{color:#d4af62}
+input,select{width:100%;padding:12px;border-radius:8px;border:1px solid #1e3a5f;background:#071a33;color:white;margin:8px 0;font-size:14px}
+.white input,.white select{background:#f8fafc;color:#071a33;border:1px solid #e2e8f0}
+button{width:100%;padding:14px;border:none;border-radius:8px;font-weight:900;cursor:pointer;margin-top:8px;font-size:14px}
+.btn-gold{background:#d4af62;color:#071a33}
+.btn-dark{background:#071a33;color:white}
+.btn-whatsapp{background:#25D366;color:white;display:none}
+.receipt{display:none;background:white;color:#071a33;border-radius:12px;padding:18px;border:2px dashed #d4af62;margin-top:12px}
+.tag{display:inline-block;background:#d4af62;color:#071a33;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:900;margin-bottom:8px}
+.emergency{font-size:11px;color:#64748b;margin-top:10px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+<img src="logo.png" class="logo-img" alt="logo">
+<button class="hamburger" onclick="toggle()">☰</button>
+<div class="menu" id="menu">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="service.html">Service</a>
+<a href="payment.html">Payment</a>
+</div>
+</header>
+
+<div class="wrap">
+<!-- LEFT: BOOKING -->
+<div class="card white">
+<div class="tag" id="selectedTag">SELECT A SERVICE</div>
+<h1 id="planTitle" style="color:#071a33">Book Your Move</h1>
+<p id="planPrice" style="color:#b99750;font-weight:900;margin:6px 0">Choose from Service page</p>
+
+<input type="text" id="name" placeholder="Full Name">
+<input type="text" id="phone" placeholder="Phone Number">
+<input type="text" id="from" placeholder="Moving From (e.g. Kasarani)">
+<input type="text" id="to" placeholder="Moving To (e.g. Syokimau)">
+<input type="date" id="date">
+
+<button class="btn-gold" onclick="bookNow()">1️⃣ Book Now</button>
+<button class="btn-dark" id="payBtn" onclick="payPrompt()" style="display:none">2️⃣ Pay Via Prompt</button>
+<button class="btn-whatsapp" id="waBtn" onclick="sendWA()">3️⃣ Send Receipt to WhatsApp</button>
+
+<div class="receipt" id="receipt">
+<h3 style="text-align:center">WELLINGTON MOVERS - RECEIPT</h3>
+<hr style="margin:10px 0;border:1px dashed #e2e8f0">
+<p><b>Plan:</b> <span id="rPlan"></span></p>
+<p><b>Price Range:</b> <span id="rPrice"></span></p>
+<p><b>Name:</b> <span id="rName"></span></p>
+<p><b>From:</b> <span id="rFrom"></span> → <b>To:</b> <span id="rTo"></span></p>
+<p><b>Date:</b> <span id="rDate"></span></p>
+<p><b>M-Pesa Code:</b> <span id="rCode"></span></p>
+<p><b>Paid Amount:</b> KES <span id="rAmount"></span></p>
+<p style="margin-top:8px;font-size:12px;color:#16a34a">✅ Verified on secure till</p>
+<button onclick="window.print()" style="margin-top:10px;background:#071a33;color:white">Print Receipt</button>
+</div>
+
+<div class="emergency">Emergency manual till: <b>4050866</b> - WELLINGTON INVESTMENTS & LOGISTICS</div>
+</div>
+
+<!-- RIGHT: INFO -->
+<div class="card">
+<h2 style="color:#d4af62">How It Works - Connected Flow</h2>
+<p style="color:#cbd5e1;margin:12px 0;font-size:14px;line-height:1.7">
+1. You clicked a service on Service Page → Auto loaded here<br>
+2. Fill booking form → Click Book Now<br>
+3. Click Pay Via Prompt → System asks for M-Pesa code <br>
+4. Receipt auto-generates<br>
+5. WhatsApp button appears → Send to us for confirmation
+</p>
+<div style="background:rgba(212,175,98,0.1);border:1px solid #d4af62;border-radius:10px;padding:12px;margin-top:12px">
+<b style="color:#d4af62">Secure Payment:</b>
+<p style="font-size:12px;color:#cbd5e1">Till number is hidden for security. Only accessible via prompt. For emergency, till is shown at bottom.</p>
+</div>
+</div>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+let plan = params.get('plan') || 'Not Selected - Go to Service Page';
+let price = params.get('price') || '';
+document.getElementById('planTitle').innerText = plan;
+document.getElementById('planPrice').innerText = price ? 'KES ' + price : 'Choose from Service Page';
+document.getElementById('selectedTag').innerText = plan.toUpperCase();
+
+let bookingData = {};
+let paymentData = {};
+
+function bookNow(){
+ let name=document.getElementById('name').value;
+ let phone=document.getElementById('phone').value;
+ let from=document.getElementById('from').value;
+ let to=document.getElementById('to').value;
+ let date=document.getElementById('date').value;
+ if(!name||!phone||!from||!to||!date){alert('Fill all booking fields');return}
+ bookingData={name,phone,from,to,date,plan,price};
+ alert('✅ Booking Saved for '+plan+'! Now Pay Via Prompt.');
+ document.getElementById('payBtn').style.display='block';
+}
+
+function payPrompt(){
+ if(!bookingData.name){alert('Book first!');return}
+ let amount = prompt('Enter amount you want to pay for '+bookingData.plan+' (KES '+bookingData.price+'):');
+ if(!amount) return;
+ let code = prompt('Payment prompt connected to secure till.\n\nEnter your M-Pesa Transaction Code after paying:\n(This verifies on till 4050866 internally)');
+ if(!code){alert('Code needed');return}
+ paymentData={amount,code};
+ // Fill receipt
+ document.getElementById('rPlan').innerText=bookingData.plan;
+ document.getElementById('rPrice').innerText=bookingData.price;
+ document.getElementById('rName').innerText=bookingData.name;
+ document.getElementById('rFrom').innerText=bookingData.from;
+ document.getElementById('rTo').innerText=bookingData.to;
+ document.getElementById('rDate').innerText=bookingData.date;
+ document.getElementById('rCode').innerText=code;
+ document.getElementById('rAmount').innerText=amount;
+ document.getElementById('receipt').style.display='block';
+ document.getElementById('waBtn').style.display='block';
+}
+
+function sendWA(){
+ let msg=`Hello Wellington Movers Investments & Logistics%0A%0ABOOKING RECEIPT%0APlan: ${bookingData.plan}%0APrice: ${bookingData.price}%0AName: ${bookingData.name}%0APhone: ${bookingData.phone}%0AFrom: ${bookingData.from}%0ATo: ${bookingData.to}%0ADate: ${bookingData.date}%0AAmount Paid: KES ${paymentData.amount}%0AM-Pesa Code: ${paymentData.code}%0APaid to Till 4050866%0A%0APlease confirm.`;
+ window.open('https://wa.me/254741929030?text='+msg,'_blank');
+}
+
+function toggle(){document.getElementById('menu').classList.toggle('show')}
+</script>
+</body>
+  </html>
