@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service - Wellington Movers</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,system-ui;background:#071a33;color:white}
+header{padding:14px 6%;display:flex;justify-content:space-between;align-items:center;background:#071a33;border-bottom:3px solid #d4af62;position:sticky;top:0;z-index:50}
+.logo-img{height:52px;width:auto;background:white;padding:5px 10px;border-radius:8px}
+.hamburger{font-size:30px;color:#d4af62;background:none;border:none;cursor:pointer}
+.menu{display:none;position:fixed;top:70px;right:6%;background:#0d2142;border:1px solid #d4af62;border-radius:14px;width:230px;overflow:hidden}
+.menu.show{display:block}
+.menu a{display:block;padding:15px 18px;color:white;text-decoration:none;border-bottom:1px solid #112a52;font-weight:700;font-size:14px}
+.menu a:hover{background:#123061;color:#d4af62}
+.hero{padding:40px 6% 20px;text-align:center}
+.hero h1{font-size:clamp(28px,5vw,44px);font-weight:900}
+.hero h1 span{color:#d4af62}
+.hero p{color:#94a3b8;margin-top:8px;font-size:14px}
+.grid{padding:20px 6% 50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{background:white;color:#071a33;border-radius:14px;padding:20px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:#d4af62}
+.card.premium::before{background:#071a33;height:6px}
+.card.premium{background:linear-gradient(135deg,#fff,#fef3c7)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.badge{background:#071a33;color:#d4af62;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900;letter-spacing:1px}
+.badge.gold{background:#d4af62;color:#071a33}
+.price{font-size:22px;font-weight:900;color:#b99750;margin:6px 0}
+.steps{margin-top:12px;background:#f1f5f9;border-radius:10px;padding:12px;font-size:13px;line-height:1.7;color:#334155}
+.steps b{color:#071a33}
+.btn{display:inline-block;margin-top:14px;padding:10px 18px;background:#071a33;color:white;text-decoration:none;border-radius:6px;font-weight:800;font-size:13px}
+.btn.gold{background:#d4af62;color:#071a33}
+</style>
+</head>
+<body>
+
+<header>
+<img src="logo.png" class="logo-img" alt="logo">
+<button class="hamburger" onclick="toggle()">☰</button>
+<div class="menu" id="menu">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="service.html">Service</a>
+<a href="payment.html">Payment</a>
+</div>
+</header>
+
+<section class="hero">
+<h1>Services That <span>Fit Your Size</span></h1>
+<p>Pick your house size — we handle the rest. Easy steps, no hidden costs.</p>
+</section>
+
+<div class="grid">
+
+<div class="card">
+<div class="top"><h3>Single Room</h3><span class="badge">SMALL</span></div>
+<div class="price">KES 5,000 - 10,000</div>
+<div class="steps">
+<b>How we do it:</b><br>
+1. Book on WhatsApp<br>
+2. Small truck + 2 crew<br>
+3. Basic wrap for bed & box<br>
+4. Load → Move → Offload
+</div>
+<a href="payment.html" class="btn">Book This</a>
+</div>
+
+<div class="card">
+<div class="top"><h3>Bedsitter</h3><span class="badge">STARTER</span></div>
+<div class="price">KES 6,000 - 15,000</div>
+<div class="steps">
+<b>How we do it:</b><br>
+1. Free quote via video<br>
+2. Boxes for kitchen items<br>
+3. Dismantle bed<br>
+4. 1 truck + 3 crew<br>
+5. Move & set bed back
+</div>
+<a href="payment.html" class="btn">Book This</a>
+</div>
+
+<div class="card">
+<div class="top"><h3>1 Bedroom</h3><span class="badge gold">POPULAR</span></div>
+<div class="price">KES 10,000 - 19,000</div>
+<div class="steps">
+<b>How we do it:</b><br>
+1. Video survey<br>
+2. Pack kitchen + clothes<br>
+3. Wrap sofa & TV<br>
+4. Dismantle furniture<br>
+5. Big truck + 4 crew<br>
+6. Unpack & arrange
+</div>
+<a href="payment.html" class="btn">Book This</a>
+</div>
+
+<div class="card">
+<div class="top"><h3>2 Bedroom</h3><span class="badge gold">MOST BOOKED</span></div>
+<div class="price">KES 12,000 - 22,000</div>
+<div class="steps">
+<b>How we do it:</b><br>
+1. Home assessment<br>
+2. Full packing + labels<br>
+3. Wardrobe boxes<br>
+4. Fragile wrapping<br>
+5. Large truck + 5 crew<br>
+6. GPS tracked move<br>
+7. Unpack + rubbish removal
+</div>
+<a href="payment.html" class="btn">Book This</a>
+</div>
+
+<div class="card">
+<div class="top"><h3>3 Bedroom</h3><span class="badge">FAMILY</span></div>
+<div class="price">KES 19,000 - 27,000</div>
+<div class="steps">
+<b>How we do it:</b><br>
+1. Free assessment<br>
+2. 2-day packing<br>
+3. Custom crating for glass<br>
+4. All furniture dismantled<br>
+5. Extra-large truck + 6 crew<br>
+6. Insurance + tracking<br>
+7. Full unpack + setup<br>
+8. Light cleaning
+</div>
+<a href="payment.html" class="btn">Book This</a>
+</div>
+
+<div class="card premium">
+<div class="top"><h3>Premium Plan</h3><span class="badge">VIP BEST</span></div>
+<div class="price">Above 30,000</div>
+<div class="steps">
+<b>VIP - Best Service:</b><br>
+1. VIP manager<br>
+2. Luxury packing materials<br>
+3. Art & piano experts<br>
+4. Custom crating<br>
+5. 2 trucks + 8 crew<br>
+6. Free storage<br>
+7. White glove unpack<br>
+8. Deep cleaning + 7-day support
+</div>
+<a href="payment.html" class="btn gold">Book Premium</a>
+</div>
+
+</div>
+
+<script>
+function toggle(){document.getElementById('menu').classList.toggle('show')}
+document.addEventListener('click',function(e){
+ let m=document.getElementById('menu'), h=document.querySelector('.hamburger');
+ if(!m.contains(e.target) && !h.contains(e.target)) m.classList.remove('show')
+})
+</script>
+
+</body>
+ </html>
