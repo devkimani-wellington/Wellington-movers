@@ -4,156 +4,164 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Service - Wellington Movers</title>
+<link rel="icon" href="logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,system-ui;background:#071a33;color:white}
-header{padding:14px 6%;display:flex;justify-content:space-between;align-items:center;background:#071a33;border-bottom:3px solid #d4af62;position:sticky;top:0;z-index:50}
-.logo-img{height:52px;width:auto;background:white;padding:5px 10px;border-radius:8px}
-.hamburger{font-size:30px;color:#d4af62;background:none;border:none;cursor:pointer}
-.menu{display:none;position:fixed;top:70px;right:6%;background:#0d2142;border:1px solid #d4af62;border-radius:14px;width:230px;overflow:hidden}
+body{font-family:Arial,system-ui;background:#071a33;color:white;scroll-behavior:smooth}
+header{background:#071a33;border-bottom:3px solid #d4af62;position:sticky;top:0;z-index:100;display:flex;flex-direction:column}
+.logo-wrap{width:100%;display:flex;justify-content:center;padding:12px 6%}
+.logo-img{width:100%;max-width:520px;height:80px;object-fit:contain;background:transparent;display:block}
+.nav-bar{width:100%;padding:10px 6%;display:flex;justify-content:space-between;align-items:center}
+.loc{color:#d4af62;font-size:12px;font-weight:800}
+.hamburger{font-size:32px;color:#d4af62;background:none;border:none;cursor:pointer}
+.menu{display:none;position:fixed;top:135px;right:6%;background:#0d2142;border:1px solid #d4af62;border-radius:14px;width:280px;overflow:hidden;z-index:99;max-height:80vh;overflow-y:auto}
 .menu.show{display:block}
-.menu a{display:block;padding:15px 18px;color:white;text-decoration:none;border-bottom:1px solid #112a52;font-weight:700;font-size:14px}
-.menu a:hover{background:#123061;color:#d4af62}
+.menu a,.about-btn{display:block;width:100%;text-align:left;padding:14px 18px;color:white;background:none;border:none;border-bottom:1px solid #112a52;font-weight:700;font-size:14px;cursor:pointer;font-family:Arial;text-decoration:none}
+.sub{display:none;background:#071a33;border-top:2px solid #d4af62;border-bottom:2px solid #d4af62}
+.sub.show{display:block}
+.sub a{padding:12px 18px 12px 32px;font-size:13px;color:#cbd5e1;border-bottom:1px solid #112a52;font-weight:700}
+.arrow{float:right;transition:.2s}
+.open .arrow{transform:rotate(90deg)}
 .hero{padding:40px 6% 20px;text-align:center}
 .hero h1{font-size:clamp(28px,5vw,44px);font-weight:900}
 .hero h1 span{color:#d4af62}
 .hero p{color:#94a3b8;margin-top:8px;font-size:14px}
-.grid{padding:20px 6% 50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
-.card{background:white;color:#071a33;border-radius:14px;padding:20px;position:relative;overflow:hidden}
+.section-title{padding:30px 6% 10px;font-size:28px;font-weight:900;border-top:2px solid #123061;margin-top:20px}
+.section-title span{color:#d4af62}
+.section-desc{padding:0 6% 20px;color:#94a3b8;font-size:14px}
+.grid{padding:10px 6% 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{background:white;color:#071a33;border-radius:14px;padding:20px;position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.2)}
 .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:#d4af62}
+.card.business::before{background:#0ea5e9;height:6px}
+.card.truck::before{background:#22c55e;height:6px}
 .card.premium::before{background:#071a33;height:6px}
 .card.premium{background:linear-gradient(135deg,#fff,#fef3c7)}
 .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.badge{background:#071a33;color:#d4af62;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900;letter-spacing:1px}
+.badge{background:#071a33;color:#d4af62;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900}
 .badge.gold{background:#d4af62;color:#071a33}
+.badge.blue{background:#0ea5e9;color:white}
+.badge.green{background:#22c55e;color:white}
 .price{font-size:22px;font-weight:900;color:#b99750;margin:6px 0}
+.price.editable{border:2px dashed transparent;cursor:pointer}
+.price.admin-mode{border-color:#d4af62;background:#fffbeb;padding:4px 8px;border-radius:6px}
 .steps{margin-top:12px;background:#f1f5f9;border-radius:10px;padding:12px;font-size:13px;line-height:1.7;color:#334155}
 .steps b{color:#071a33}
-.btn{display:inline-block;margin-top:14px;padding:10px 18px;background:#071a33;color:white;text-decoration:none;border-radius:6px;font-weight:800;font-size:13px}
+.btn{display:inline-block;margin-top:12px;padding:10px 16px;background:#071a33;color:white;text-decoration:none;border-radius:6px;font-weight:800;font-size:13px;margin-right:6px}
 .btn.gold{background:#d4af62;color:#071a33}
+.btn.blue{background:#0ea5e9;color:white}
+.btn.green{background:#22c55e;color:white}
+.calc-box{background:#0d2142;border:2px solid #d4af62;border-radius:14px;padding:18px;margin:20px 6%;max-width:600px}
+.calc-box h3{color:#d4af62;margin-bottom:10px}
+.calc-box input,.calc-box select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #334155;background:#071a33;color:white}
+.calc-result{margin-top:10px;padding:12px;background:#071a33;border-radius:8px;color:#22c55e;font-weight:900;font-size:18px;text-align:center}
+.admin-bar{display:none;position:fixed;bottom:0;left:0;width:100%;background:#d4af62;color:#071a33;padding:12px 6%;z-index:200;justify-content:space-between;align-items:center;font-weight:900}
+.admin-bar.show{display:flex}
 </style>
 </head>
 <body>
 
 <header>
-<img src="logo.png" class="logo-img" alt="logo">
-<button class="hamburger" onclick="toggle()">☰</button>
+<div class="logo-wrap"><img src="logo.png" class="logo-img" alt="Wellington Movers"></div>
+<div class="nav-bar"><div class="loc">📍 WESTLANDS, NAIROBI • 0741929030</div><button class="hamburger" onclick="toggleMenu()">☰</button></div>
 <div class="menu" id="menu">
 <a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="service.html">Service</a>
+<button class="about-btn" id="aboutBtn" onclick="toggleAbout()">About <span class="arrow">▶</span></button>
+<div class="sub" id="aboutSub">
+<a href="about.html#easy">About Easy Home</a>
+<a href="about.html#hama">About Hama na Biashara</a>
+<a href="about.html#lorry">About Hire a Lorry</a>
+</div>
+<button class="about-btn" id="serviceBtn" onclick="toggleService()">Service <span class="arrow">▶</span></button>
+<div class="sub" id="serviceSub">
+<a href="#easy" onclick="closeMenu()">🏠 1. Easy Home</a>
+<a href="#hama" onclick="closeMenu()">🏢 2. Hama na Biashara</a>
+<a href="#lorry" onclick="closeMenu()">🚚 3. Hire a Truck</a>
+</div>
 <a href="payment.html">Payment</a>
+<a href="#" onclick="adminLogin();return false" style="background:#071a33;color:#d4af62;text-align:center;border-top:2px solid #d4af62">🔒 Admin Price Edit</a>
+<a href="tel:0741929030" style="background:#d4af62;color:#071a33;text-align:center;font-weight:900">📞 0741929030</a>
 </div>
 </header>
 
 <section class="hero">
 <h1>Services That <span>Fit Your Size</span></h1>
-<p>Pick your house size — we handle the rest. Easy steps, no hidden costs.</p>
+<p>Pick your house size, business size or truck — we handle the rest.</p>
 </section>
 
+<!-- ========== 1. EASY HOME ========== -->
+<h2 class="section-title" id="easy">1. Easy Home <span>— Nyumba</span></h2>
+<p class="section-desc">Praises remain as they are — home moving packages</p>
 <div class="grid">
-
-<div class="card">
-<div class="top"><h3>Single Room</h3><span class="badge">SMALL</span></div>
-<div class="price">KES 5,000 - 10,000</div>
-<div class="steps">
-<b>How we do it:</b><br>
-1. Book on WhatsApp<br>
-2. Small truck + 2 crew<br>
-3. Basic wrap for bed & box<br>
-4. Load → Move → Offload
-</div>
-<a href="payment.html" class="btn">Book This</a>
+<div class="card"><div class="top"><h3>Single Room</h3><span class="badge">SMALL</span></div><div class="price" data-key="single">KES 5,000 - 10,000</div><div class="steps"><b>How we do it:</b><br>1. Book on WhatsApp<br>2. Small truck + 2 crew<br>3. Basic wrap for bed & box<br>4. Load → Move → Offload</div><a href="payment.html" class="btn">Book This</a></div>
+<div class="card"><div class="top"><h3>Bedsitter</h3><span class="badge">STARTER</span></div><div class="price" data-key="bedsitter">KES 6,000 - 15,000</div><div class="steps"><b>How we do it:</b><br>1. Free quote via video<br>2. Boxes for kitchen items<br>3. Dismantle bed<br>4. 1 truck + 3 crew<br>5. Move & set bed back</div><a href="payment.html" class="btn">Book This</a></div>
+<div class="card"><div class="top"><h3>1 Bedroom</h3><span class="badge gold">POPULAR</span></div><div class="price" data-key="1br">KES 10,000 - 19,000</div><div class="steps"><b>How we do it:</b><br>1. Video survey<br>2. Pack kitchen + clothes<br>3. Wrap sofa & TV<br>4. Dismantle furniture<br>5. Big truck + 4 crew<br>6. Unpack & arrange</div><a href="payment.html" class="btn">Book This</a></div>
+<div class="card"><div class="top"><h3>2 Bedroom</h3><span class="badge gold">MOST BOOKED</span></div><div class="price" data-key="2br">KES 12,000 - 22,000</div><div class="steps"><b>How we do it:</b><br>1. Home assessment<br>2. Full packing + labels<br>3. Wardrobe boxes<br>4. Fragile wrapping<br>5. Large truck + 5 crew<br>6. GPS tracked move<br>7. Unpack + rubbish removal</div><a href="payment.html" class="btn">Book This</a></div>
+<div class="card"><div class="top"><h3>3 Bedroom</h3><span class="badge">FAMILY</span></div><div class="price" data-key="3br">KES 19,000 - 27,000</div><div class="steps"><b>How we do it:</b><br>1. Free assessment<br>2. 2-day packing<br>3. Custom crating for glass<br>4. All furniture dismantled<br>5. Extra-large truck + 6 crew<br>6. Insurance + tracking<br>7. Full unpack + setup<br>8. Light cleaning</div><a href="payment.html" class="btn">Book This</a></div>
+<div class="card premium"><div class="top"><h3>Premium Plan</h3><span class="badge">VIP BEST</span></div><div class="price" data-key="premium">Above 30,000</div><div class="steps"><b>VIP - Best Service:</b><br>1. VIP manager<br>2. Luxury packing materials<br>3. Art & piano experts<br>4. Custom crating<br>5. 2 trucks + 8 crew<br>6. Free storage<br>7. White glove unpack<br>8. Deep cleaning + 7-day support</div><a href="payment.html" class="btn gold">Book Premium</a></div>
 </div>
 
-<div class="card">
-<div class="top"><h3>Bedsitter</h3><span class="badge">STARTER</span></div>
-<div class="price">KES 6,000 - 15,000</div>
-<div class="steps">
-<b>How we do it:</b><br>
-1. Free quote via video<br>
-2. Boxes for kitchen items<br>
-3. Dismantle bed<br>
-4. 1 truck + 3 crew<br>
-5. Move & set bed back
-</div>
-<a href="payment.html" class="btn">Book This</a>
+<!-- ========== 2. HAMA NA BIASHARA ========== -->
+<h2 class="section-title" id="hama">2. Hama na Biashara <span>— Business Move</span></h2>
+<p class="section-desc">From kiosk to corporate — we scale with your business</p>
+<div class="grid">
+<div class="card business"><div class="top"><h3>Small Scale</h3><span class="badge blue">KIOSK / SHOP</span></div><div class="price" data-key="smallBiz">KES 8,000 - 18,000</div><div class="steps"><b>For:</b> Kiosk, Salon, Small Shop, Stall<br><br><b>How we do it:</b><br>1. Evening/weekend move (no biz loss)<br>2. Stock boxes + shelf packing<br>3. Small Canter + 3 crew<br>4. POS & electronics wrap<br>5. Arrange shelves in new shop<br>6. Same day reopen</div><a href="https://wa.me/254741929030?text=Small%20Scale%20Biz%20Move" class="btn blue">Book Business</a></div>
+<div class="card business"><div class="top"><h3>Scalable Business</h3><span class="badge gold">MEDIUM</span></div><div class="price" data-key="scaleBiz">KES 20,000 - 45,000</div><div class="steps"><b>For:</b> Supermarket, Restaurant, 2-3 Shops, Office 5-15 staff<br><br><b>How we do it:</b><br>1. Free site visit + plan<br>2. Inventory list + labels<br>3. 2 Canters + 6 crew<br>4. IT & server safe move<br>5. Fridge & cooker experts<br>6. Setup + 2-day support<br>7. Staff briefing</div><a href="https://wa.me/254741929030?text=Scalable%20Biz%20Move" class="btn gold">Book Business</a></div>
+<div class="card business"><div class="top"><h3>Large Enterprises</h3><span class="badge">CORPORATE</span></div><div class="price" data-key="largeBiz">KES 50,000 - 150,000+</div><div class="steps"><b>For:</b> Warehouse, Factory, HQ, 20+ Staff, Mall<br><br><b>How we do it:</b><br>1. Dedicated Project Manager<br>2. Full audit & insurance<br>3. 3-5 Trucks + 12 crew<br>4. Forklift & pallet<br>5. Weekend/night move<br>6. IT reconnection<br>7. Deep clean new site<br>8. 7-day after support</div><a href="https://wa.me/254741929030?text=Large%20Enterprise%20Move" class="btn">Book Corporate</a></div>
 </div>
 
-<div class="card">
-<div class="top"><h3>1 Bedroom</h3><span class="badge gold">POPULAR</span></div>
-<div class="price">KES 10,000 - 19,000</div>
-<div class="steps">
-<b>How we do it:</b><br>
-1. Video survey<br>
-2. Pack kitchen + clothes<br>
-3. Wrap sofa & TV<br>
-4. Dismantle furniture<br>
-5. Big truck + 4 crew<br>
-6. Unpack & arrange
-</div>
-<a href="payment.html" class="btn">Book This</a>
+<!-- ========== 3. HIRE A TRUCK ========== -->
+<h2 class="section-title" id="lorry">3. Hire a Truck <span>— Gari Tu</span></h2>
+<p class="section-desc">Reasonable prices + 1000 bob per KM calculation</p>
+
+<div class="calc-box">
+<h3>🚚 KM Calculator — 1000 Bob per KM</h3>
+<select id="truckSelect" onchange="calc()">
+<option value="3500">Pickup (Small) - Base 3,500</option>
+<option value="6000">Canter 3T (Medium) - Base 6,000</option>
+<option value="9000">Canter 7T / FH (Large) - Base 9,000</option>
+<option value="15000">20T Lorry / Container (Extra) - Base 15,000</option>
+</select>
+<input type="number" id="kmInput" placeholder="Enter distance KM e.g. 20" oninput="calc()">
+<div class="calc-result" id="result">Total = Base + (KM × 1000)<br>Enter KM</div>
+<p style="font-size:11px;color:#94a3b8;margin-top:8px">* Fuel, driver, 2 loaders included. Waiting time 500/hour after 2hrs.</p>
 </div>
 
-<div class="card">
-<div class="top"><h3>2 Bedroom</h3><span class="badge gold">MOST BOOKED</span></div>
-<div class="price">KES 12,000 - 22,000</div>
-<div class="steps">
-<b>How we do it:</b><br>
-1. Home assessment<br>
-2. Full packing + labels<br>
-3. Wardrobe boxes<br>
-4. Fragile wrapping<br>
-5. Large truck + 5 crew<br>
-6. GPS tracked move<br>
-7. Unpack + rubbish removal
-</div>
-<a href="payment.html" class="btn">Book This</a>
+<div class="grid">
+<div class="card truck"><div class="top"><h3>Pickup - Small</h3><span class="badge green">1.5T</span></div><div class="price" data-key="pickup">Base KES 3,500 + 1,000/KM</div><div class="steps"><b>Best for:</b> Single items, Fridge, Sofa, Small shop<br><br><b>Includes:</b><br>1. Pickup + driver<br>2. 2 crew<br>3. 10KM free<br>4. Rope & blanket<br>5. Town service<br><br><b>Example:</b> Westlands to Kileleshwa (8KM) = 3,500 + 8,000 = <b>11,500</b></div><a href="https://wa.me/254741929030?text=Pickup%20Hire" class="btn green">Hire Pickup</a></div>
+<div class="card truck"><div class="top"><h3>Canter 3T - Medium</h3><span class="badge green">MOST HIRED</span></div><div class="price" data-key="canter3">Base KES 6,000 + 1,000/KM</div><div class="steps"><b>Best for:</b> Bedsitter, 1BR, Shop stock<br><br><b>Includes:</b><br>1. Canter 3 Ton + driver<br>2. 3 crew<br>3. 10KM free<br>4. Full cover<br>5. GPS tracking<br><br><b>Example:</b> Westlands to Syokimau (25KM) = 6,000 + 25,000 = <b>31,000</b></div><a href="https://wa.me/254741929030?text=Canter%203T" class="btn green">Hire Canter</a></div>
+<div class="card truck"><div class="top"><h3>Canter 7T / FH</h3><span class="badge">LARGE</span></div><div class="price" data-key="canter7">Base KES 9,000 + 1,000/KM</div><div class="steps"><b>Best for:</b> 2BR, 3BR, Office, Restaurant<br><br><b>Includes:</b><br>1. 7 Ton lorry + driver<br>2. 5 crew<br>3. 10KM free<br>4. Dismantle help<br>5. Insurance up to 200k<br><br><b>Example:</b> Westlands to Kitengela (35KM) = 9,000 + 35,000 = <b>44,000</b></div><a href="https://wa.me/254741929030?text=Canter%207T" class="btn">Hire 7T</a></div>
+<div class="card truck"><div class="top"><h3>20T Lorry / Container</h3><span class="badge gold">HEAVY</span></div><div class="price" data-key="lorry20">Base KES 15,000 + 1,000/KM</div><div class="steps"><b>Best for:</b> 4BR+, Warehouse, Bulk goods, Upcountry<br><br><b>Includes:</b><br>1. 20T + 2 drivers<br>2. 8 crew<br>3. 15KM free<br>4. Custom crating<br>5. Full insurance<br><br><b>Example:</b> Nairobi to Nakuru (160KM) = 15,000 + 160,000 = <b>175,000</b></div><a href="https://wa.me/254741929030?text=20T%20Lorry" class="btn gold">Hire 20T</a></div>
 </div>
 
-<div class="card">
-<div class="top"><h3>3 Bedroom</h3><span class="badge">FAMILY</span></div>
-<div class="price">KES 19,000 - 27,000</div>
-<div class="steps">
-<b>How we do it:</b><br>
-1. Free assessment<br>
-2. 2-day packing<br>
-3. Custom crating for glass<br>
-4. All furniture dismantled<br>
-5. Extra-large truck + 6 crew<br>
-6. Insurance + tracking<br>
-7. Full unpack + setup<br>
-8. Light cleaning
-</div>
-<a href="payment.html" class="btn">Book This</a>
-</div>
-
-<div class="card premium">
-<div class="top"><h3>Premium Plan</h3><span class="badge">VIP BEST</span></div>
-<div class="price">Above 30,000</div>
-<div class="steps">
-<b>VIP - Best Service:</b><br>
-1. VIP manager<br>
-2. Luxury packing materials<br>
-3. Art & piano experts<br>
-4. Custom crating<br>
-5. 2 trucks + 8 crew<br>
-6. Free storage<br>
-7. White glove unpack<br>
-8. Deep cleaning + 7-day support
-</div>
-<a href="payment.html" class="btn gold">Book Premium</a>
-</div>
-
+<div class="admin-bar" id="adminBar">
+<span>🔓 ADMIN MODE: Click any price to edit — Auto saves!</span>
+<button onclick="exitAdmin()" style="padding:8px 14px;background:#071a33;color:white;border:none;border-radius:6px;font-weight:800;cursor:pointer">Exit Admin</button>
 </div>
 
 <script>
-function toggle(){document.getElementById('menu').classList.toggle('show')}
-document.addEventListener('click',function(e){
- let m=document.getElementById('menu'), h=document.querySelector('.hamburger');
- if(!m.contains(e.target) && !h.contains(e.target)) m.classList.remove('show')
-})
+let admin=false;
+const PASS="Wellington@2025";
+function toggleMenu(){document.getElementById('menu').classList.toggle('show')}
+function toggleAbout(){document.getElementById('aboutSub').classList.toggle('show');document.getElementById('aboutBtn').classList.toggle('open')}
+function toggleService(){document.getElementById('serviceSub').classList.toggle('show');document.getElementById('serviceBtn').classList.toggle('open')}
+function closeMenu(){document.getElementById('menu').classList.remove('show')}
+function calc(){
+ let base=parseInt(document.getElementById('truckSelect').value)||0;
+ let km=parseInt(document.getElementById('kmInput').value)||0;
+ let total=base+(km*1000);
+ document.getElementById('result').innerHTML= km? `Distance: ${km}KM<br>Base: ${base.toLocaleString()} + ${km}*1000 = ${total.toLocaleString()} KES` : 'Enter KM';
+}
+function adminLogin(){
+ let p=prompt("Company Admin Password:");
+ if(p===PASS){admin=true;document.getElementById('adminBar').classList.add('show');document.querySelectorAll('.price').forEach(el=>{el.classList.add('admin-mode');el.contentEditable=true;el.title="Click to edit price";});alert("Admin unlocked! Click any price to change. Saves automatically.");}
+ else if(p!==null){alert("Wrong password! Only Wellington company can change prices.");}
+}
+function exitAdmin(){
+ admin=false;document.getElementById('adminBar').classList.remove('show');document.querySelectorAll('.price').forEach(el=>{el.classList.remove('admin-mode');el.contentEditable=false;localStorage.setItem('price_'+el.dataset.key,el.innerText);});alert("Prices saved! Only you can change again with password.");
+}
+function loadPrices(){document.querySelectorAll('.price').forEach(el=>{let s=localStorage.getItem('price_'+el.dataset.key);if(s) el.innerText=s;});}
+loadPrices();
+document.addEventListener('click',e=>{let m=document.getElementById('menu'),h=document.querySelector('.hamburger');if(!m.contains(e.target)&&!h.contains(e.target)){m.classList.remove('show')}})
 </script>
-
 </body>
- </html>
+                                                                                                                                                                                                                                                    </html>
