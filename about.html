@@ -4,39 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About - Wellington Movers</title>
+<link rel="icon" href="logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,system-ui;background:#071a33;color:white}
-header{padding:14px 6%;display:flex;justify-content:space-between;align-items:center;background:#071a33;border-bottom:3px solid #d4af62;position:sticky;top:0;z-index:50}
-.logo-img{height:52px;width:auto;background:white;padding:5px 10px;border-radius:8px}
+header{background:#071a33;border-bottom:3px solid #d4af62;position:sticky;top:0;z-index:50;display:flex;flex-direction:column}
+.logo-wrap{width:100%;display:flex;justify-content:center;padding:12px 6%;background:#071a33}
+.logo-img{width:100%;max-width:520px;height:80px;object-fit:contain}
+.nav-bar{width:100%;padding:10px 6%;display:flex;justify-content:space-between;align-items:center}
+.loc{color:#d4af62;font-size:12px;font-weight:800}
 .hamburger{font-size:30px;color:#d4af62;background:none;border:none;cursor:pointer}
-.menu{display:none;position:fixed;top:70px;right:6%;background:#0d2142;border:1px solid #d4af62;border-radius:14px;width:230px;overflow:hidden}
+.menu{display:none;position:fixed;top:132px;right:6%;background:#0d2142;border:1px solid #d4af62;border-radius:14px;width:260px;overflow:hidden;z-index:99}
 .menu.show{display:block}
-.menu a{display:block;padding:15px 18px;color:white;text-decoration:none;border-bottom:1px solid #112a52;font-weight:700;font-size:14px}
-.menu a:hover{background:#123061;color:#d4af62}
-.hero{padding:60px 6% 40px;display:flex;align-items:center;min-height:80vh;
-background:linear-gradient(100deg,rgba(7,26,51,0.95),rgba(7,26,51,0.7)),url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80");background-size:cover}
-.box{max-width:600px}
+.menu a, .menu button.about-btn{display:block;width:100%;text-align:left;padding:14px 18px;color:white;background:none;border:none;border-bottom:1px solid #112a52;font-weight:700;font-size:14px;cursor:pointer;font-family:Arial}
+.menu a:hover, .menu button.about-btn:hover{background:#123061;color:#d4af62}
+.sub{display:none;background:#071a33;border-top:2px solid #d4af62;border-bottom:2px solid #d4af62}
+.sub.show{display:block}
+.sub a{padding:11px 18px 11px 32px;font-size:13px;color:#cbd5e1;border-bottom:1px solid #112a52}
+.sub a:last-child{border-bottom:none}
+.arrow{float:right;transition:0.2s}
+.about-btn.open .arrow{transform:rotate(90deg)}
+.hero{padding:60px 6% 30px;display:flex;align-items:center;min-height:70vh;background:linear-gradient(100deg,rgba(7,26,51,0.95),rgba(7,26,51,0.7)),url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80");background-size:cover}
+.box{max-width:650px}
 .tag{color:#d4af62;letter-spacing:3px;font-size:11px;font-weight:900;margin-bottom:12px}
 h1{font-size:clamp(32px,5vw,54px);line-height:1;font-weight:900}
 h1 span{color:#d4af62}
-p{margin:14px 0;color:#cbd5e1;line-height:1.8;font-size:15px}
+p{margin:12px 0;color:#cbd5e1;line-height:1.8;font-size:15px}
 .stats{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
-.stats div{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px 18px;min-width:130px}
+.stats div{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px 18px;min-width:120px}
 .stats b{display:block;color:#d4af62;font-size:20px}
-.btn{padding:13px 26px;background:#d4af62;color:#071a33;text-decoration:none;font-weight:900;border-radius:5px;display:inline-block;margin-top:18px}
+.btn{padding:13px 26px;background:#d4af62;color:#071a33;text-decoration:none;font-weight:900;border-radius:6px;display:inline-block;margin-top:18px;margin-right:10px}
+.services{padding:40px 6%;background:#f8fafc;color:#071a33}
+.services h2{font-size:32px;color:#071a33;text-align:center}
+.services h2 span{color:#d4af62}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:28px;max-width:1100px;margin:auto}
+.card{background:white;border-radius:16px;padding:26px;border:1px solid #e2e8f0;box-shadow:0 6px 24px rgba(7,26,51,0.06);border-left:5px solid #d4af62}
+.card h3{margin-bottom:8px;font-size:20px}
+.card p{color:#475569;font-size:14px;line-height:1.7}
+.icon{font-size:28px;margin-bottom:10px;display:block}
 </style>
 </head>
 <body>
 
 <header>
-<img src="logo.png" class="logo-img" alt="logo">
-<button class="hamburger" onclick="toggle()">☰</button>
+<div class="logo-wrap"><img src="logo.png" class="logo-img" alt="logo"></div>
+<div class="nav-bar">
+<div class="loc">📍 WESTLANDS, NAIROBI • 0741929030</div>
+<button class="hamburger" onclick="toggleMenu()">☰</button>
+</div>
 <div class="menu" id="menu">
 <a href="index.html">Home</a>
-<a href="about.html">About</a>
+
+<!-- ABOUT BUTTON - PRESS TO SHOW 3 BRANCHES -->
+<button class="about-btn" id="aboutBtn" onclick="toggleAbout()">About <span class="arrow">▶</span></button>
+<div class="sub" id="aboutSub">
+<a href="#easy" onclick="closeAll()">🏠 1. Easy Home</a>
+<a href="#hama" onclick="closeAll()">🏢 2. Hama na Biashara</a>
+<a href="#lorry" onclick="closeAll()">🚚 3. Hire a Lorry</a>
+</div>
+
 <a href="service.html">Service</a>
 <a href="payment.html">Payment</a>
+<a href="tel:0741929030" style="background:#d4af62;color:#071a33;text-align:center;font-weight:900">📞 0741929030</a>
+<a href="https://wa.me/254741929030" style="background:#25D366;color:white;text-align:center;font-weight:900;display:block;padding:14px 18px;text-decoration:none">💬 WhatsApp</a>
 </div>
 </header>
 
@@ -44,30 +74,54 @@ p{margin:14px 0;color:#cbd5e1;line-height:1.8;font-size:15px}
 <div class="box">
 <div class="tag">WHO WE ARE</div>
 <h1>We Don't Just Move.<br><span>We Deliver Excitement.</span></h1>
-<p>
-Wellington Movers Investments & Logistics was built to make moving feel easy. From single rooms to premium homes, we pack, carry, and set up — fast, safe, and with style. Licensed, insured, and trusted across Kenya.
-</p>
-<p style="color:#94a3b8;font-size:13px">
-Moving Value. Connecting Markets. Building Tomorrow. That's not a slogan — it's how we work every day.
-</p>
-
+<p>Wellington Movers Investments & Logistics — fast, safe, with style. Licensed, insured, trusted across Kenya.</p>
 <div class="stats">
 <div><b>1000+</b>Moves Done</div>
 <div><b>All Kenya</b>Coverage</div>
 <div><b>24/7</b>Crew Ready</div>
 </div>
+<a href="#easy" class="btn">Our 3 Services ↓</a>
+</div>
+</section>
 
-<a href="service.html" class="btn">See Our Services →</a>
+<section class="services">
+<h2>What We Do <span>In About Us</span></h2>
+<div class="grid">
+<div class="card" id="easy">
+<span class="icon">🏠</span>
+<h3>1. Easy Home</h3>
+<p><b>For moving to a new house</b><br>We make home moving stress-free! We pack clothes, kitchen, TV, beds, sofas — wrap with blankets and boxes. Transport from Westlands to anywhere Kenya and arrange in new house. Bedsitter to 5BR — safe, fast, no breakages.</p>
+</div>
+<div class="card" id="hama">
+<span class="icon">🏢</span>
+<h3>2. Hama na Biashara</h3>
+<p><b>For moving businesses and offices</b><br>We move your hustle! Shops, offices, restaurants, salons. Stock, shelves, fridges, computers, files — after hours so business doesn't stop. Fast setup from Westlands to all Kenya.</p>
+</div>
+<div class="card" id="lorry">
+<span class="icon">🚚</span>
+<h3>3. Hire a Lorry / Truck</h3>
+<p><b>For hiring a truck</b><br>Need lorry only? Pickup, Canter, 7-ton, 10-ton, trailers. Truck + driver + fuel. For mizigo, materials, events. Per trip or per day. Call 0741929030 — your truvk arrives in no time!</p>
+</div>
 </div>
 </section>
 
 <script>
-function toggle(){document.getElementById('menu').classList.toggle('show')}
+function toggleMenu(){document.getElementById('menu').classList.toggle('show')}
+function toggleAbout(){
+ let sub=document.getElementById('aboutSub');
+ let btn=document.getElementById('aboutBtn');
+ sub.classList.toggle('show');
+ btn.classList.toggle('open');
+}
+function closeAll(){
+ document.getElementById('menu').classList.remove('show');
+ document.getElementById('aboutSub').classList.remove('show');
+ document.getElementById('aboutBtn').classList.remove('open');
+}
 document.addEventListener('click',function(e){
  let m=document.getElementById('menu'), h=document.querySelector('.hamburger');
- if(!m.contains(e.target) && !h.contains(e.target)) m.classList.remove('show')
+ if(!m.contains(e.target) && !h.contains(e.target)){m.classList.remove('show')}
 })
 </script>
-
 </body>
-</html>
+ </html>
