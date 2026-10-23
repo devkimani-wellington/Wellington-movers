@@ -5,7 +5,7 @@
 ![Wellington Movers](logo.png)
 
 ### 🚚 Live Website
-**https://devkimani-wellington.github.io/Wellington-movers/**
+**https://devkimani-wellington.github.io/Wellington-movers-and-logistics/**
 *(or your new domain)*
 
 ---
